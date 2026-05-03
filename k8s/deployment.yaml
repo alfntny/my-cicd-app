@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-cicd-app
+  labels:
+    app: my-cicd-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-cicd-app
+  template:
+    metadata:
+      labels:
+        app: my-cicd-app
+    spec:
+      containers:
+      - name: my-cicd-app
+        image: alfntny/my-cicd-app:latest
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
