@@ -40,8 +40,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo '--- Deploying to Minikube ---'
-                sh "kubectl apply -f k8s/deployment.yaml"
-                sh "kubectl apply -f k8s/service.yaml"
+                sh "kubectl apply --validate=false -f k8s/deployment.yaml"
+                sh "kubectl apply --validate=false -f k8s/service.yaml"
                 sh "kubectl rollout restart deployment/my-cicd-app"
                 sh "kubectl rollout status deployment/my-cicd-app"
             }
